@@ -36,7 +36,6 @@ public class Heapsort {
 		
 	}
 	
-		
 	public void maxHeapify(int ar[], int subtreeSize, int subtreeRoot) {
 		int maior = subtreeRoot;
 		int l = 2*subtreeRoot + 1;
@@ -63,28 +62,7 @@ public class Heapsort {
 			
 	}
 	
-	public static void printArray(int ar[]) {
-		for(int i = 0; i < ar.length; i++) {
-			System.out.println("ar["+i+"] = " + ar[i]);
-		}
-	}
-	
-	
 	public int[] getHeap() {
 		return heap;
 	}
-	
-	
-	public static void main(String args[]) 
-    { 
-        int ar[] = {7, 2, 5, 3, 0}; 
-        System.out.println("O array original é: ");
-        printArray(ar);
-        
-        
-        Heapsort ob = new Heapsort(ar); 
-        ar = ob.getHeap();
-        System.out.println("\nO array organizado é: ");
-        printArray(ar);
-    }
 }
