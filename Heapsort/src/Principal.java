@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public class Principal {
-
+	
+	private static int heap[]; 
+	
 	public static void printArray(int ar[]) {
 		for(int i = 0; i < ar.length; i++) {
 			System.out.println("ar["+i+"] = " + ar[i]);
@@ -33,40 +35,38 @@ public class Principal {
 		System.out.println("Diretorio do arquivo: \n" + directory);
 		System.out.println();
 		
-		
+		int size = 0;
 		System.out.println("Instancia numerica: \n");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(directory));
 			
-			while(br.ready()){
+			size = Integer.parseInt(br.readLine().toString());
+			heap = new int[size];
+			
+			int index = 0;
+			
+			while(br.ready()) {
 		        String linha = br.readLine();
-		        //int i = Integer.parseInt(linha);
-		        System.out.println(linha);
+		        int i = Integer.parseInt(linha);
+		        heap[index++] = i;
+		        System.out.println(i);
 		     }
 		     br.close();
-			
+		     
 		} catch (IOException e) {
 			System.out.println("Arquivo nao encontrado!");
 			e.printStackTrace();
 		}
 		
-		//String filename = args[0];
-		//System.out.println(filename);
 		
-        /*for(String arg : args)
-            System.out.println(arg) ;*/
 		
-        
-        
-       /* int ar[] = {7, 2, 5, 3, 0}; 
-        System.out.println("\nO array original eh: ");
-        printArray(ar);
-        
-        
-        Heapsort ob = new Heapsort(ar); 
-        ar = ob.getHeap();
+		System.out.println("\nTamanho do array:" + size);
+		System.out.println(heap[9999]);  
+ 
+        Heapsort ob = new Heapsort(heap); 
+        heap = ob.getHeap();
         System.out.println("\nO array organizado eh: ");
-        printArray(ar);*/
+        printArray(heap);
 	}
 
 }
