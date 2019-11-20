@@ -1,68 +1,74 @@
-
 public class Heapsort {
 	
-	private int[] heap;
+	private int heap[];
 	
 	public Heapsort(int ar[]) {
 		heap = ar;
-		sort();
+		heapSort();
 	}
 	
-	public void buildHeapMax() {
-		int tam = heap.length; //comprimento do array
+	public void ordenaHeap() {
+		int tam = heap.length;
 		
-		for (int i = tam / 2 - 1; i >= 0; i--) 
-			maxHeapify(heap, tam, i); 
+		//Partindo da metade do array, monta a heap
+		for(int i = tam/2 - 1; i >= 0; i--)
+			constroiHeapMax(tam, i);
+		
 		
 	}
 	
-	private void sort() {
-		int tam = heap.length; //comprimento do array
-	
-		buildHeapMax();
+	public void constroiHeapMax(int treeSize, int rootIndex) {
+		//Root -> raiz da sub�rvore a ser analisada
+		int menor = rootIndex;
+		int leftSon = 2 * rootIndex + 1;
+		int rightSon = 2 * rootIndex + 2;
 		
-		//A cada iteração, diminui o tamanho do heap (não seu tamanho real)
-		for(int i = tam-1 ; i >= 0; i--) {
+		//a primeira condi��o verifica se a sub�rvore tem filho � esquerda
+		if(leftSon < treeSize && heap[leftSon] < heap[menor])
+			menor = leftSon;
+		
+		//a primeira condicao verifica se a subarvore tem filho � direita
+		if(rightSon < treeSize && heap[rightSon] < heap[menor])
+			menor = rightSon;
 			
-			//Troca a ultima folha de lugar com a raiz
+		if(menor != rootIndex) {
+			int aux = heap[rootIndex];
+			heap[rootIndex] = heap[menor];
+			heap[menor] = aux;
+			
+			constroiHeapMax(treeSize, menor);
+		}
+			
+	}
+	
+	
+	public void heapSort() {
+		int tam = heap.length;
+		
+		
+		ordenaHeap();
+		
+		for(int i = tam - 1; i >= 0; i--) {
+			
+			//Manda o maior elemento(raiz) pro final do array
 			int aux = heap[0];
 			heap[0] = heap[i];
 			heap[i] = aux;
 			
-			//Realiza o maxHeapify em cada sub-árvore
-			maxHeapify(heap, i, 0);
+			//Reconstroi a heap sem contar o 
+			constroiHeapMax(i, 0);
 		}
+	
 		
 		
 	}
 	
-	public void maxHeapify(int ar[], int subtreeSize, int subtreeRoot) {
-		int maior = subtreeRoot;
-		int l = 2*subtreeRoot + 1;
-		int r = 2*subtreeRoot + 2;
-		
-		//A instrução à esquerda do if verifica se existe filho à esquerda
-		if(l < subtreeSize && ar[l] > ar[maior])
-			maior = l;
-		
-		//A instrução à esquerda do if verifica se existe filho à direita
-		if(r < subtreeSize && ar[r] > ar[maior])
-			maior = r;
-		
-		//Se o maior nó não é mais a raiz da sub árvore...
-		if(maior != subtreeRoot) {
-			//trocar de lugar os valores do maior nó e da raíz da sub árvore
-			int aux = ar[subtreeRoot];
-			ar[subtreeRoot] = ar[maior];
-			ar[maior] = aux;
-			
-			//repete o processo com a nova raiz da sub árvore
-			maxHeapify(ar, subtreeSize, maior);	
-		}
-			
-	}
 	
 	public int[] getHeap() {
+		for(int i = 0; i < heap.length; i++) {
+			System.out.println(heap[i]);
+		}
 		return heap;
 	}
+	
 }

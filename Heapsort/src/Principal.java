@@ -25,7 +25,7 @@ public class Principal {
 			FileWriter arq = new FileWriter(destiny);
 			PrintWriter gravarArq = new PrintWriter(arq);
 			
-			for(int i = heap.length-1; i >= 0; i--) {
+			for(int i = 0; i < heap.length; i++) {
 				gravarArq.printf("%d%n", heap[i]);
 			}
 			
