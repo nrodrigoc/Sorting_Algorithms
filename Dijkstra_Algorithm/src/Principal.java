@@ -11,7 +11,7 @@ public class Principal {
 	private static int matriz[][]; 
 	
 	public static void printArray(int heap[]) {
-		System.out.println("Enter the file name: ");
+		System.out.println("Enter file name: ");
 		Scanner ler = new Scanner(System.in);
 		String nome = ler.next();
 		ler.close();
