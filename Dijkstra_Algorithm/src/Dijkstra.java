@@ -10,4 +10,5 @@ public class Dijkstra {
 		matrizAdjacente = matriz;
 		this.nDeNos = nDeNos;
 	}
+	
 }
