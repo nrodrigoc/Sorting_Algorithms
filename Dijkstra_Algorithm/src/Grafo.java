@@ -32,7 +32,7 @@ public class Grafo {
 		
 		for(int i = 0; i < nDeNos; i++) {
 			if(nos[vertice][i] > 0) {
-				vizinhos.add(nos[vertice][i]);
+				vizinhos.add(i);
 			}
 		}
 		
