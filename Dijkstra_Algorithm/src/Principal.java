@@ -83,9 +83,9 @@ public class Principal {
 		}
 		
 		
-		for(int j = 0; j < size; j++) {
+		for(int i = 0; i < size; i++) {
 			System.out.println();
-			for(int i = 0; i < size; i++) {
+			for(int j = 0; j < size; j++) {
 				System.out.print(matriz[i][j] + " ");
 			}
 		}

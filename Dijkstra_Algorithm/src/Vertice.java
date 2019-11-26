@@ -1,12 +1,12 @@
 
 public class Vertice {
-
-	private int distanciaOrigem;
-	private Vertice pai; 
 	
+	public int id;
+	public int predecessor;
 	
-	public Vertice() {
-		// TODO Auto-generated constructor stub
+	public Vertice(int id) {
+		this.id = id;
+		this.predecessor = -1;
 	}
 	
 	
