@@ -43,7 +43,7 @@ public class Grafo {
 	public ArrayList<Vertice> getVizinhos(Vertice vertice){
 		ArrayList<Vertice> vizinhos = new ArrayList<>();
 		
-		for(int i = 0; i < nOfVertices; i++) {
+		for(int i = 0; i < vertices.size(); i++) {
 			if(vertexMatrix[vertice.id][i] > 0) {
 				vizinhos.add(vertices.get(i));
 			}
