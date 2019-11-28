@@ -1,5 +1,6 @@
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Grafo {
 	
@@ -32,19 +33,19 @@ public class Grafo {
 		vertexMatrix[v2][v1] = 0;
 	}*/
 	
-	public int getDistancia(int v1, int v2) {
+	public int getPeso(int v1, int v2) {
 		return vertexMatrix[v1][v2];
 	}
 	
 	/*
 	 * retorna a lista de adjacencia do no
 	 */
-	public ArrayList<Integer> getVizinhos(int vertice){
-		ArrayList<Integer> vizinhos = new ArrayList<>();
+	public ArrayList<Vertice> getVizinhos(Vertice vertice){
+		ArrayList<Vertice> vizinhos = new ArrayList<>();
 		
 		for(int i = 0; i < nOfVertices; i++) {
-			if(vertexMatrix[vertice][i] > 0) {
-				vizinhos.add(i);
+			if(vertexMatrix[vertice.id][i] > 0) {
+				vizinhos.add(vertices.get(i));
 			}
 		}
 		

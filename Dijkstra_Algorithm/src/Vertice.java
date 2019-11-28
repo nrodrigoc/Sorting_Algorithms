@@ -10,7 +10,7 @@ public class Vertice {
 		this.id = id;
 		visitado = false;
 		antecessor = -1;
-		this.distOrigem = -1;
+		this.distOrigem = 99999;
 	}
 	
 	

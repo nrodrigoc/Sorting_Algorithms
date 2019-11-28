@@ -89,9 +89,11 @@ public class Principal {
 				System.out.print(matriz[i][j] + " ");
 			}
 		}
- 
-        /*Dijkstra ob = new Dijkstra(matriz); 
-        heap = ob.getHeap();
+		System.out.println();
+		
+        Dijkstra ob = new Dijkstra(matriz, size); 
+        ob.inicializa(0);
+        /*heap = ob.getHeap();
         printArray(heap);*/
 	}
 
