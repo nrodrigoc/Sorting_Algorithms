@@ -1,8 +1,8 @@
-public class Heapsort {
+public class HeapMin {
 	
 	private int heap[];
 	
-	public Heapsort(int ar[]) {
+	public HeapMin(int ar[]) {
 		heap = ar;
 		heapSort();
 	}
@@ -12,31 +12,31 @@ public class Heapsort {
 		
 		//Partindo da metade do array, monta a heap
 		for(int i = tam/2 - 1; i >= 0; i--)
-			constroiHeapMax(tam, i);
+			constroiHeapMin(tam, i);
 		
 		
 	}
 	
-	public void constroiHeapMax(int treeSize, int rootIndex) {
+	public void constroiHeapMin(int treeSize, int rootIndex) {
 		//Root -> raiz da sub�rvore a ser analisada
-		int maior = rootIndex;
+		int menor = rootIndex;
 		int leftSon = 2 * rootIndex + 1;
 		int rightSon = 2 * rootIndex + 2;
 		
 		//a primeira condi��o verifica se a sub�rvore tem filho � esquerda
-		if(leftSon < treeSize && heap[leftSon] < heap[maior])
-			maior = leftSon;
+		if(leftSon < treeSize && heap[leftSon] < heap[menor])
+			menor = leftSon;
 		
 		//a primeira condicao verifica se a subarvore tem filho � direita
-		if(rightSon < treeSize && heap[rightSon] < heap[maior])
-			maior = rightSon;
+		if(rightSon < treeSize && heap[rightSon] < heap[menor])
+			menor = rightSon;
 			
-		if(maior != rootIndex) {
+		if(menor != rootIndex) {
 			int aux = heap[rootIndex];
-			heap[rootIndex] = heap[maior];
-			heap[maior] = aux;
+			heap[rootIndex] = heap[menor];
+			heap[menor] = aux;
 			
-			constroiHeapMax(treeSize, maior);
+			constroiHeapMin(treeSize, menor);
 		}
 			
 	}
@@ -56,7 +56,7 @@ public class Heapsort {
 			heap[i] = aux;
 			
 			//Reconstroi a heap sem contar o 
-			constroiHeapMax(i, 0);
+			constroiHeapMin(i, 0);
 		}
 	
 		

@@ -8,8 +8,11 @@ public class Vertice {
 	public Vertice(int id) {
 		this.id = id;
 		antecessor = -1;
-		this.distOrigem = 99999;
+		this.distOrigem = Integer.MAX_VALUE/2;
 	}
 	
+	public int getDadIndex() {
+		return id/2; 
+	}
 	
 }

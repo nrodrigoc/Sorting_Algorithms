@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 public class Dijkstra {
 	
-	private ArrayList<Vertice> listaDeAdjacencia;
 	private ArrayList<Vertice> abertos;
 	private ArrayList<Vertice> fechados;
 	private LinkedList<Integer> caminhoMin;
@@ -14,11 +13,13 @@ public class Dijkstra {
 	
 	public Dijkstra(int matriz[][], int nDeNos) {
 		caminhoMin = new LinkedList<Integer>();
-		listaDeAdjacencia = new ArrayList<Vertice>();
 		fechados = new ArrayList<Vertice>();
-		
 		grafo = new Grafo(matriz, nDeNos);
-		abertos = grafo.vertices;
+		abertos = new ArrayList<Vertice>();
+		
+		for(int i = 0; i < grafo.vertices.size(); i++) {
+			abertos.add(grafo.vertices.get(i));
+		}
 		
 	}
 	
@@ -40,10 +41,15 @@ public class Dijkstra {
 		}
 			
 			
-			
-		for(int i = 0; i < caminhoMin.size(); i++) {
-			System.out.println(caminhoMin.get(i));
+		for(Vertice v : fechados) {
+			System.out.println("vertice: " + v.id);
 		}
+		
+		for(int i = 0; i < caminhoMin.size(); i++) {
+			System.out.print(caminhoMin.get(i));
+		}
+		System.out.println("\ndistancia: " + grafo.vertices.get(fechados.size()-1).distOrigem);
+		
 	}
 	
 	public void relaxamento(Vertice u, Vertice v) {
