@@ -6,7 +6,7 @@ public class Grafo {
 	
 	private int[][] vertexMatrix;
 	private int nOfVertices;
-	public ArrayList<Vertice> vertices;
+	public Vertice[] vertices;
 	
 	
 	public Grafo(int[][] vertexMatrix, int nOfVertices) {
@@ -17,9 +17,9 @@ public class Grafo {
 	}
 	
 	public void initVertexArray() {
-		vertices = new ArrayList<Vertice>();
+		vertices = new Vertice[nOfVertices];
 		for(int i = 0; i < nOfVertices; i++) {
-			vertices.add(new Vertice(i));
+			vertices[i] = new Vertice(i);
 		}
 	}
 	
@@ -43,9 +43,9 @@ public class Grafo {
 	public ArrayList<Vertice> getVizinhos(Vertice vertice){
 		ArrayList<Vertice> vizinhos = new ArrayList<>();
 		
-		for(int i = 0; i < vertices.size(); i++) {
+		for(int i = 0; i < vertices.length; i++) {
 			if(vertexMatrix[vertice.id][i] > 0) {
-				vizinhos.add(vertices.get(i));
+				vizinhos.add(vertices[i]);
 			}
 		}
 		

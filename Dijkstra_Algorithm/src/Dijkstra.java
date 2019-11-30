@@ -6,25 +6,26 @@ public class Dijkstra {
 	
 	private ArrayList<Vertice> abertos;
 	private ArrayList<Vertice> fechados;
-	private LinkedList<Integer> caminhoMin;
+	private ArrayList<Integer> caminhoMin;
 	
 	private Grafo grafo; 
 	
 	
 	public Dijkstra(int matriz[][], int nDeNos) {
-		caminhoMin = new LinkedList<Integer>();
+		caminhoMin = new ArrayList<Integer>();
 		fechados = new ArrayList<Vertice>();
 		grafo = new Grafo(matriz, nDeNos);
+		
 		abertos = new ArrayList<Vertice>();
 		
-		for(int i = 0; i < grafo.vertices.size(); i++) {
-			abertos.add(grafo.vertices.get(i));
+		for(int i = 0; i < grafo.vertices.length; i++) {
+			abertos.add(grafo.vertices[i]);
 		}
 		
 	}
 	
 	public void inicializa(int origem) {
-		grafo.vertices.get(origem).distOrigem = 0;
+		grafo.vertices[origem].distOrigem = 0;
 		
 		
 		Iterator<Vertice> itr = abertos.iterator();
@@ -45,10 +46,10 @@ public class Dijkstra {
 			System.out.println("vertice: " + v.id);
 		}
 		
-		for(int i = 0; i < caminhoMin.size(); i++) {
-			System.out.print(caminhoMin.get(i));
+		for(int i = 0; i < grafo.vertices.length; i++) {
+			System.out.print(grafo.vertices[i].antecessor);
 		}
-		System.out.println("\ndistancia: " + grafo.vertices.get(fechados.size()-1).distOrigem);
+		System.out.println("\ndistancia: " + grafo.vertices[grafo.vertices.length-1].distOrigem);
 		
 	}
 	
@@ -57,7 +58,6 @@ public class Dijkstra {
 		if(v.distOrigem > (u.distOrigem + grafo.getPeso(u.id, v.id))) {
 			v.distOrigem = u.distOrigem + v.distOrigem;	
 			v.antecessor = u.id;
-			caminhoMin.add(v.id);
 		}
 		
 	}

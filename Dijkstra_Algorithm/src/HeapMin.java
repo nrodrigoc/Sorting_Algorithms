@@ -1,10 +1,11 @@
 public class HeapMin {
 	
-	private int heap[];
+	public Vertice heap[];
 	
-	public HeapMin(int ar[]) {
-		heap = ar;
+	public HeapMin(Grafo grafo) {
+		heap = grafo.vertices;
 		heapSort();
+		
 	}
 	
 	public void ordenaHeap() {
@@ -13,28 +14,31 @@ public class HeapMin {
 		//Partindo da metade do array, monta a heap
 		for(int i = tam/2 - 1; i >= 0; i--)
 			constroiHeapMin(tam, i);
-		
-		
 	}
 	
+	public void swap(int i, int menor) {
+		int aux = heap[i].distOrigem;
+		heap[i].distOrigem = heap[menor].distOrigem;
+		heap[menor].distOrigem = aux;
+	}
+	
+	
 	public void constroiHeapMin(int treeSize, int rootIndex) {
-		//Root -> raiz da sub�rvore a ser analisada
+		//Root -> raiz da subarvore a ser analisada
 		int menor = rootIndex;
 		int leftSon = 2 * rootIndex + 1;
 		int rightSon = 2 * rootIndex + 2;
 		
 		//a primeira condi��o verifica se a sub�rvore tem filho � esquerda
-		if(leftSon < treeSize && heap[leftSon] < heap[menor])
+		if(leftSon < treeSize && heap[leftSon].distOrigem < heap[menor].distOrigem)
 			menor = leftSon;
 		
 		//a primeira condicao verifica se a subarvore tem filho � direita
-		if(rightSon < treeSize && heap[rightSon] < heap[menor])
+		if(rightSon < treeSize && heap[rightSon].distOrigem < heap[menor].distOrigem)
 			menor = rightSon;
 			
 		if(menor != rootIndex) {
-			int aux = heap[rootIndex];
-			heap[rootIndex] = heap[menor];
-			heap[menor] = aux;
+			swap(rootIndex, menor);
 			
 			constroiHeapMin(treeSize, menor);
 		}
@@ -44,27 +48,20 @@ public class HeapMin {
 	
 	public void heapSort() {
 		int tam = heap.length;
-		
-		
 		ordenaHeap();
 		
 		for(int i = tam - 1; i >= 0; i--) {
 			
 			//Manda o maior elemento(raiz) pro final do array
-			int aux = heap[0];
-			heap[0] = heap[i];
-			heap[i] = aux;
+			swap(0, i);
 			
 			//Reconstroi a heap sem contar o 
 			constroiHeapMin(i, 0);
 		}
-	
-		
-		
 	}
 	
 	
-	public int[] getHeap() {
+	public Vertice[] getHeap() {
 		for(int i = 0; i < heap.length; i++) {
 			System.out.println(heap[i]);
 		}
