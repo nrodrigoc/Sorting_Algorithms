@@ -91,8 +91,7 @@ public class Principal {
 		}
 		System.out.println();
 		
-        Dijkstra ob = new Dijkstra(matriz, size); 
-        ob.inicializa(0);
+        Dijkstra ob = new Dijkstra(matriz); 
         /*heap = ob.getHeap();
         printArray(heap);*/
 	}

@@ -2,28 +2,28 @@ public class HeapMin {
 	
 	public Vertice heap[];
 	
-	public HeapMin(Grafo grafo) {
-		heap = grafo.vertices;
+	public HeapMin(Vertice[] heap) {
+		this.heap = heap;
 		heapSort();
 		
 	}
 	
-	public void ordenaHeap() {
+	public void buildHeapMin() {
 		int tam = heap.length;
 		
 		//Partindo da metade do array, monta a heap
 		for(int i = tam/2 - 1; i >= 0; i--)
-			constroiHeapMin(tam, i);
+			minHeapify(tam, i);
 	}
 	
 	public void swap(int i, int menor) {
-		int aux = heap[i].distOrigem;
-		heap[i].distOrigem = heap[menor].distOrigem;
-		heap[menor].distOrigem = aux;
+		Vertice aux = heap[i];
+		heap[i] = heap[menor];
+		heap[menor] = aux;
 	}
 	
 	
-	public void constroiHeapMin(int treeSize, int rootIndex) {
+	public void minHeapify(int treeSize, int rootIndex) {
 		//Root -> raiz da subarvore a ser analisada
 		int menor = rootIndex;
 		int leftSon = 2 * rootIndex + 1;
@@ -40,7 +40,7 @@ public class HeapMin {
 		if(menor != rootIndex) {
 			swap(rootIndex, menor);
 			
-			constroiHeapMin(treeSize, menor);
+			minHeapify(treeSize, menor);
 		}
 			
 	}
@@ -48,18 +48,33 @@ public class HeapMin {
 	
 	public void heapSort() {
 		int tam = heap.length;
-		ordenaHeap();
+		buildHeapMin();
 		
 		for(int i = tam - 1; i >= 0; i--) {
 			
 			//Manda o maior elemento(raiz) pro final do array
 			swap(0, i);
 			
-			//Reconstroi a heap sem contar o 
-			constroiHeapMin(i, 0);
+			//Reconstroi a heap sem contar o ultimo elemento
+			minHeapify(i, 0);
 		}
 	}
 	
+	public Vertice extractMin() {
+		Vertice min = heap[0];
+		Vertice ultimo = heap[heap.length-1];
+		
+		
+		
+		if(heap.length < 1) {
+			System.out.println("Nao existe minimo");
+			return null;
+		}
+
+		
+		return min;
+		
+	}
 	
 	public Vertice[] getHeap() {
 		for(int i = 0; i < heap.length; i++) {

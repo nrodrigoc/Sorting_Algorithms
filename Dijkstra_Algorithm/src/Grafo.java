@@ -4,22 +4,20 @@ import java.util.LinkedList;
 
 public class Grafo {
 	
-	private int[][] vertexMatrix;
-	private int nOfVertices;
-	public Vertice[] vertices;
+	private int[][] matriz;
+	public Vertice[] heap;
 	
 	
-	public Grafo(int[][] vertexMatrix, int nOfVertices) {
-		this.vertexMatrix = vertexMatrix;
-		this.nOfVertices = nOfVertices;
+	public Grafo(int[][] matriz) {
+		this.matriz = matriz;
 	
 		initVertexArray();
 	}
 	
 	public void initVertexArray() {
-		vertices = new Vertice[nOfVertices];
-		for(int i = 0; i < nOfVertices; i++) {
-			vertices[i] = new Vertice(i);
+		heap = new Vertice[matriz.length];
+		for(int i = 0; i < matriz.length; i++) {
+			heap[i] = new Vertice(i);
 		}
 	}
 	
@@ -28,25 +26,25 @@ public class Grafo {
 	 * v1 -> vertice1
 	 * v2 -> vertice2
 	 */
-	/*public void removerAresta(int v1, int v2) {
-		vertexMatrix[v1][v2] = 0;
-		vertexMatrix[v2][v1] = 0;
-	}*/
-	
 	public int getPeso(int v1, int v2) {
-		return vertexMatrix[v1][v2];
+		return matriz[v1][v2];
 	}
 	
 	/*
 	 * retorna a lista de adjacencia do no
 	 */
-	public ArrayList<Vertice> getVizinhos(Vertice vertice){
-		ArrayList<Vertice> vizinhos = new ArrayList<>();
+	public Vertice[] getVizinhos(Vertice vertice){
+		Vertice[] vizinhos = new Vertice[matriz.length-1];
 		
-		for(int i = 0; i < vertices.length; i++) {
-			if(vertexMatrix[vertice.id][i] > 0) {
-				vizinhos.add(vertices[i]);
-			}
+		int ajuste = 0;
+		for(int i = 0; i < heap.length-1; i++) {
+			if(ajuste == 0) {
+				if(matriz[vertice.id][i] > 0)
+					vizinhos[i] = heap[i];
+				else
+					ajuste = 1;
+			}else
+				vizinhos[i-1] = heap[i];
 		}
 		
 		return vizinhos;
