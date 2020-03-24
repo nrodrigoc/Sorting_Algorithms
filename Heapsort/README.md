@@ -1,4 +1,4 @@
-# HeapSort algorithm
+# Heap sort algorithm
 
 #### Para compilar, após entrar na pasta src pelo terminal, digitar o seguinte comando:
 
